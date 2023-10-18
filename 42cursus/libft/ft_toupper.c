@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 16:22:18 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/17 18:44:01 by wfranco          ###   ########.fr       */
+/*   Created: 2023/10/18 18:08:02 by wfranco           #+#    #+#             */
+/*   Updated: 2023/10/18 18:39:50 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const char *src, size_t n)
+int	ft_toupper(int c)
 {
-	unsigned char		*x;
-	const unsigned char	*y;
-
-	x = dest;
-	y = src;
-	if (x < y)
-	{
-		while (n--)
-		{
-			*x++ = *y++;
-		}
-	}
-	else
-	{
-		while (n--)
-		{
-			x[n] = y[n];
-		}
-	}
-	return (dest);
+	if (c >= 97 && c <= 122)
+		c -= 32;
+	return (c);
 }
+/*int	main(void)
+{
+
+	printf("%c", ft_toupper('d'));	return (0);
+}*/
