@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 14:25:33 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/23 15:01:55 by wfranco          ###   ########.fr       */
+/*   Created: 2023/10/23 13:33:46 by wfranco           #+#    #+#             */
+/*   Updated: 2023/10/23 14:34:04 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char		*x;
-	const char	*y;
+	size_t	total_size;
+	void	*dst;
 
-	x = dest;
-	y = src;
-	while (n > 0)
-	{
-		*x = *y;
-		x++;
-		y++;
-		n--;
-	}
-	return (dest);
+	total_size = size * nmemb;
+	dst = malloc(total_size);
+	if (!(dst))
+		return (0);
+	ft_memset (dst, 0, total_size);
+	return (dst);
 }
-/*
-int	main(void)
-{
-	const char str[] = "hello world\n";
-	char buf[0xff];
-
-	ft_memcpy(buf, str, sizeof(str));
-	printf("%s", buf);
-	return (0);
-}*/

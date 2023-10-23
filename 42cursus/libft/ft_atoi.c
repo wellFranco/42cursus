@@ -6,7 +6,7 @@
 /*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 18:15:44 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/20 18:36:03 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/10/23 13:33:05 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	ft_atoi(const char *nptr)
 	}
 	return (n * sign);
 }
-int	main(void)
+/*int	main(void)
 {
 	char	test_01[] = "234ab567";
 
 	printf("%d\n", ft_atoi(test_01));
-}
+}*/

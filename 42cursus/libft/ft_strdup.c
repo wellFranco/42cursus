@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 14:25:33 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/23 15:01:55 by wfranco          ###   ########.fr       */
+/*   Created: 2023/10/23 14:29:16 by wfranco           #+#    #+#             */
+/*   Updated: 2023/10/23 15:02:39 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	*ft_strdup(const char *s)
 {
-	char		*x;
-	const char	*y;
+	char	*s2;
 
-	x = dest;
-	y = src;
-	while (n > 0)
-	{
-		*x = *y;
-		x++;
-		y++;
-		n--;
-	}
-	return (dest);
+	s2 = (char *)malloc(ft_strlen(s) + 1);
+	if (!(s2))
+		return (0);
+	ft_memcpy(s2, s, ft_strlen(s) + 1);
+	return (s2);
 }
-/*
-int	main(void)
+/*int	main(void)
 {
-	const char str[] = "hello world\n";
-	char buf[0xff];
+	char	test_00[] = "tom & jerry";
+	char	*copy;
 
-	ft_memcpy(buf, str, sizeof(str));
-	printf("%s", buf);
+	copy = ft_strdup(test_00);
+
+	if (copy == NULL)
+		return (1);
+	printf("%s", copy);
 	return (0);
 }*/

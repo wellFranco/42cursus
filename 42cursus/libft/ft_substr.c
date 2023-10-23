@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 14:25:33 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/23 15:01:55 by wfranco          ###   ########.fr       */
+/*   Created: 2023/10/23 15:04:10 by wfranco           #+#    #+#             */
+/*   Updated: 2023/10/23 16:49:53 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char		*x;
-	const char	*y;
+	int	i;
+	char 	*str;
 
-	x = dest;
-	y = src;
-	while (n > 0)
+	str = malloc((len - start) * (sizeof(char *)));
+	if (str)
 	{
-		*x = *y;
-		x++;
-		y++;
-		n--;
+		i = 0;
+		while (start < len)
+		{
+			str[i] = s[start];
+			i++;
+			start++;
+		}
+		str[i] = '\0';
 	}
-	return (dest);
+	return (str);
 }
-/*
-int	main(void)
+/*int	main(void)
 {
-	const char str[] = "hello world\n";
-	char buf[0xff];
+	char str[] = "Minecraft";
+	char *dst;
 
-	ft_memcpy(buf, str, sizeof(str));
-	printf("%s", buf);
+	dst = ft_substr(str, 2, 10);
+	printf("%s", dst);
 	return (0);
 }*/
