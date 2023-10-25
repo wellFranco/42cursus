@@ -6,7 +6,7 @@
 /*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:21:32 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/18 18:05:58 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/10/25 13:12:43 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,17 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		dst[d_size] = src[i];
 		d_size++;
 		i++;
-	if (d_size == size - 1)
-		break;
+		if (d_size == size - 1)
+			break ;
 	}
 	dst[d_size] = '\0';
 	return (d_len + s_len);
 }
-int	main(void)
+/*int	main(void)
 {
-	char source[] 
-}
+	char source[] = "tom &";
+	char dst[] = "jerry";
+	
+	printf("%ld", ft_strlcat(source, dst, sizeof(source)));
+	return (0);
+}*/
