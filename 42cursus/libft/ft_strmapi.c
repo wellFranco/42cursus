@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 14:53:10 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/26 16:51:58 by wfranco          ###   ########.fr       */
+/*   Created: 2023/10/26 14:10:18 by wfranco           #+#    #+#             */
+/*   Updated: 2023/10/26 14:59:46 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static char	*strchr(const char *str, int c)
-{
-	while (*str && c != *str)
-		str++;
-	if (c == *str)
-		return ((char *)str);
-	return (0);
-}
 
 static size_t	strlen(const char *s)
 {
@@ -31,24 +22,38 @@ static size_t	strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	size_t	i;
+	size_t	len;
+	char	*str;
 
-	if (!s1 || !set)
-		return (NULL);
 	i = 0;
-	while (*s1 && strchr(set, *s1))
-		s1++;
-	i = strlen(s1);
-	while (i && strchr(set, s1[i]))
-		i--;
-	return (ft_substr(s1, 0, i + 1));
+	if (!s || !f)
+		return (0);
+	len = strlen(s);
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (0);
+	while (i < len)
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
-/*int	main(void)
+/*char f(unsigned int i, char c)
 {
-	char	s1[] = "oi, maninho";
+	char str;
+	str = c + 1;
+	return (str);
+}
 
-	printf("%s", ft_strtrim(s1, "o"));
-	return (0);
+int main(void)
+{
+	char str1[] = "abc";
+	char* str2;
+	str2 = ft_strmapi(str1, *f);
+	printf("%s\n", str2);
 }*/
