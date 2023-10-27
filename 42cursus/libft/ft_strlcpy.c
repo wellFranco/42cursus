@@ -6,7 +6,7 @@
 /*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:58:44 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/18 15:20:03 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/10/27 18:33:33 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ size_t	ft_strlcpy(char	*dst, const char *src, size_t size)
 	size_t	srcsize;
 	size_t	i;
 
-	if (!dst || !src)
-		return (0);
 	srcsize = ft_strlen(src);
 	i = 0;
 	if (size != 0)
@@ -30,7 +28,7 @@ size_t	ft_strlcpy(char	*dst, const char *src, size_t size)
 		}
 		dst[i] = '\0';
 	}
-	return (size);
+	return (srcsize);
 }
 /*int main(void)
 {

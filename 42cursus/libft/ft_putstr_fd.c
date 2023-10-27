@@ -6,7 +6,7 @@
 /*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:55:39 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/26 17:57:12 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/10/27 16:02:44 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 	{
-		write(fd, &str[i], 1);
+		write(fd, &s[i], 1);
 		i++;
 	}
 }

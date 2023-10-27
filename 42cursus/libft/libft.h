@@ -6,7 +6,7 @@
 /*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:30:13 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/26 18:23:04 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/10/27 16:01:25 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stddef.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 int		ft_isalpha(int c);
 
@@ -32,8 +33,6 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-
-int		*ft_strrchr(const char *str, int c);
 
 int		ft_atoi(const char *nptr);
 
@@ -65,6 +64,8 @@ void	ft_putnbr_fd(int n, int fd);
 
 char	*ft_strchr(const char *str, int c);
 
+char	*ft_strrchr(const char *str, int c);
+
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 
 char	*ft_strdup(const char *s);
@@ -80,5 +81,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+
+char	**ft_split(char const *s, char c);
 
 #endif

@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 12:23:06 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/27 18:22:23 by wfranco          ###   ########.fr       */
+/*   Created: 2023/10/20 12:19:25 by wfranco           #+#    #+#             */
+/*   Updated: 2023/10/27 17:56:44 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strrchr(const char *str, int c)
 {
-	size_t	i;
+	const char	*aux;
 
-	i = 0;
-	while (i < n && s1[i] != '\0' && s1[2] != '\0')
+	aux = NULL;
+	while (*str)
 	{
-		if (s1[i] != s2[i])
-		{
-			return ((unsigned char)(s1[i]) - (unsigned char)(s2[i]));
-		}
-		i++;
+		if (*str == c)
+			aux = str;
+		str++;
 	}
-	if ( i < n)
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-	return (0);
+	if (*str == c)
+		return ((char *)str);
+	else
+		return ((char *)aux);
 }
-/*int	main(void)
+/*int     main(void)
 {
-	char test_00[15] = "to & jerry";
-	char test_01[15] = "tom & jerry";
+    const char str[] = "tudo, ok";
+	const char chr = 'o';
+	char *rtn;
 
-	printf("%d\n", ft_strncmp(test_00, test_01, 1));
+	rtn = ft_strrchr(str, chr);
+
+	printf("%s", rtn);
 }*/
