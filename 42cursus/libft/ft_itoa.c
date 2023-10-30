@@ -6,54 +6,51 @@
 /*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:30:37 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/26 14:02:25 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/10/30 16:33:28 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	size_n(int n, int i)
+static int	ft_size_nb(int nb)
 {
-	while (n)
-	{
-		n = n / 10;
-		i++;
-	}
-	return (i);
-}
+	int	len;
 
-static void	ft_sign(int *sign, int *n, int *i)
-{
-	*sign = 1;
-	*n *= -1;
-	++*i;
+	len = 0;
+	if (nb <= 0)
+		len++;
+	while (nb)
+	{
+		len++;
+		nb = nb / 10;
+	}
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
+	int		len;
 	char	*str;
-	int		sign;
-	int		i;
-	int		copy;
+	long	nb;
 
-	sign = 0;
-	i = 0;
-	if (n < 0)
-		ft_sign(&sign, &n, &i);
-	copy = n;
-	i = size_n(n, i);
-	str = malloc((i + sign + 1) * sizeof(char));
-	if (str)
+	len = ft_size_nb(n);
+	nb = n;
+	str = malloc(sizeof(char) * len + 1);
+	if (!str)
+		return (NULL);
+	if (nb < 0)
 	{
-		str[i] = '\0';
-		while (i--)
-		{
-			n = n / 10;
-			str[i] = 48 + copy - n * 10;
-			copy = copy / 10;
-		}
-		if (str[0] == '0')
-			str[0] = '-';
+		str[0] = '-';
+		nb = -nb;
+	}
+	if (nb == 0)
+		str[0] = '0';
+	str[len--] = '\0';
+	while (nb)
+	{
+		str[len] = nb % 10 + '0';
+		len --;
+		nb = nb / 10;
 	}
 	return (str);
 }
