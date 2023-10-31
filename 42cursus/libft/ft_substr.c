@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wfranco <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 15:04:10 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/30 15:17:14 by wfranco          ###   ########.fr       */
+/*   Created: 2023/10/31 15:42:02 by wfranco           #+#    #+#             */
+/*   Updated: 2023/10/31 15:42:07 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 			i++;
 			start++;
 		}
+		str[i] = '\0';
 	}
-	str[i] = '\0';
 	return (str);
 }
 /*int	main(void)
