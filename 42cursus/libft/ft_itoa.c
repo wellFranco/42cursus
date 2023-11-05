@@ -6,7 +6,7 @@
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:42:47 by wfranco           #+#    #+#             */
-/*   Updated: 2023/10/31 15:42:50 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/11/03 15:29:10 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_itoa(int n)
 	while (nb)
 	{
 		str[len] = nb % 10 + '0';
-		len --;
+		len--;
 		nb = nb / 10;
 	}
 	return (str);
