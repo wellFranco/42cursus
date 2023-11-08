@@ -6,7 +6,7 @@
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:49:32 by wfranco           #+#    #+#             */
-/*   Updated: 2023/11/06 16:21:08 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/11/08 15:13:01 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_putstr(char *s)
 	i = 0;
 	while (s[i])
 	{
-		ft_putchar(&s[i]);
+		ft_putchar(s[i]);
 		i++;
 	}
 	return (i);

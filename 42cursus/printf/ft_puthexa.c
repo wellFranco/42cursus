@@ -1,62 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:24:29 by wfranco           #+#    #+#             */
-/*   Updated: 2023/11/08 15:08:20 by wfranco          ###   ########.fr       */
+/*   Created: 2023/11/08 16:40:45 by wfranco           #+#    #+#             */
+/*   Updated: 2023/11/08 17:40:39 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_size_nb(int nb)
+static int	ft_count_hexa(int nb)
 {
-	int	len;
+	int	count;
 
-	len = 0;
-	if (nb <= 0)
-		len++;
-	while (nb)
+	count = 0;
+	while (nb != 0)
 	{
-		len++;
-		nb = nb / 10;
+		nb = nb / 16;
+		count++;
 	}
-	return (len);
+	return (count);
 }
 
-static int	ft_putnb(int nb)
+static void	ft_put_hexanb(int nb, char c)
 {
-	if (nb == -2147483648)
-	{
-		ft_putchar('-');
-		ft_putchar('2');
-		ft_putnb(147483648);
-	}
-	else if (nb < 0)
-	{
-		ft_putchar('-');
-		ft_putnb(-nb);
-	}
-	else if (nb > 9)
-	{
-		ft_putnb(nb / 10);
-		ft_putchar(nb % 10 + 48);
-	}
+	if (nb >= 16)
+		ft_put_hexanb(nb / 16, c);
 	else
-		ft_putchar(nb + 48);
+	{
+		if (nb <= 9)
+			ft_putchar(nb + 48);
+		else
+		{
+			if (c == 'x')
+				ft_putchar((nb - 10) + 'a');
+			if (c == 'X')
+				ft_putchar((nb - 10) + 'A');
+		}
+	}
 }
 
-int	ft_putnbr(int nb)
+int	ft_puthexa(int nb, char c)
 {
 	int	result;
 
 	if (nb == 0)
 	{
-		print = ft_putchar(48);
+		result = ft_putchar(48);
 		return (result);
 	}
-	ft_putnb(nb);
-	result = ft_size_nb(nb);
+	ft_put_hexanb(nb, c);
+	result = ft_count_hexa(nb);
 	return (result);
 }

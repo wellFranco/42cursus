@@ -1,62 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putunsint.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:24:29 by wfranco           #+#    #+#             */
-/*   Updated: 2023/11/08 15:08:20 by wfranco          ###   ########.fr       */
+/*   Created: 2023/11/08 15:16:39 by wfranco           #+#    #+#             */
+/*   Updated: 2023/11/08 15:27:46 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_size_nb(int nb)
+static int	count_nbr(unsigned int nb)
 {
-	int	len;
+	int	count;
 
-	len = 0;
-	if (nb <= 0)
-		len++;
-	while (nb)
+	count = 0;
+	while (nb != 0)
 	{
-		len++;
 		nb = nb / 10;
+		count++;
 	}
-	return (len);
+	return (count);
 }
 
-static int	ft_putnb(int nb)
+static void	ft_put_unsinbr(unsigned int nb)
 {
-	if (nb == -2147483648)
+	if (nb > 9)
 	{
-		ft_putchar('-');
-		ft_putchar('2');
-		ft_putnb(147483648);
-	}
-	else if (nb < 0)
-	{
-		ft_putchar('-');
-		ft_putnb(-nb);
-	}
-	else if (nb > 9)
-	{
-		ft_putnb(nb / 10);
+		ft_put_unsinbr(nb / 10);
 		ft_putchar(nb % 10 + 48);
 	}
 	else
-		ft_putchar(nb + 48);
+		ft_putchar(n + 48);
 }
 
-int	ft_putnbr(int nb)
+int	ft_putunsint(unsigned int nb)
 {
 	int	result;
 
 	if (nb == 0)
 	{
-		print = ft_putchar(48);
+		result = ft_putchar(48);
 		return (result);
 	}
-	ft_putnb(nb);
-	result = ft_size_nb(nb);
+	ft_put_unsinbr(nb);
+	result = count_nbr(nb);
 	return (result);
 }
