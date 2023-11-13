@@ -6,11 +6,13 @@
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:40:45 by wfranco           #+#    #+#             */
-/*   Updated: 2023/11/08 17:40:39 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/11/13 14:35:34 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_count_hexa(int nb)
+#include "ft_printf.h"
+
+static int	ft_count_hexa(unsigned int nb)
 {
 	int	count;
 
@@ -23,10 +25,13 @@ static int	ft_count_hexa(int nb)
 	return (count);
 }
 
-static void	ft_put_hexanb(int nb, char c)
+static void	ft_put_hexanb(unsigned int nb, char c)
 {
 	if (nb >= 16)
+	{
 		ft_put_hexanb(nb / 16, c);
+		ft_put_hexanb(nb % 16, c);
+	}
 	else
 	{
 		if (nb <= 9)
@@ -34,23 +39,24 @@ static void	ft_put_hexanb(int nb, char c)
 		else
 		{
 			if (c == 'x')
-				ft_putchar((nb - 10) + 'a');
+				ft_putchar(nb - 10 + 'a');
 			if (c == 'X')
-				ft_putchar((nb - 10) + 'A');
+				ft_putchar(nb - 10 + 'A');
 		}
 	}
 }
 
-int	ft_puthexa(int nb, char c)
+int	ft_puthexa(unsigned int nb, char c)
 {
 	int	result;
 
+	result = 0;
 	if (nb == 0)
 	{
-		result = ft_putchar(48);
+		result += ft_putchar(48);
 		return (result);
 	}
+	result += ft_count_hexa(nb);
 	ft_put_hexanb(nb, c);
-	result = ft_count_hexa(nb);
 	return (result);
 }

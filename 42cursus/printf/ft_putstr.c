@@ -6,14 +6,21 @@
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:49:32 by wfranco           #+#    #+#             */
-/*   Updated: 2023/11/08 15:13:01 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/11/09 15:49:47 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int	ft_putstr(char *s)
 {
 	int	i;
 
+	if (!s)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	i = 0;
 	while (s[i])
 	{

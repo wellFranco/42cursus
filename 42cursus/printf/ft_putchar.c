@@ -6,9 +6,11 @@
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:45:01 by wfranco           #+#    #+#             */
-/*   Updated: 2023/11/06 15:46:08 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/11/09 15:49:17 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {

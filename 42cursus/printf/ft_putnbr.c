@@ -6,9 +6,11 @@
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:24:29 by wfranco           #+#    #+#             */
-/*   Updated: 2023/11/08 15:08:20 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/11/09 15:49:38 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 static int	ft_size_nb(int nb)
 {
@@ -25,7 +27,7 @@ static int	ft_size_nb(int nb)
 	return (len);
 }
 
-static int	ft_putnb(int nb)
+static void	ft_putnb(int nb)
 {
 	if (nb == -2147483648)
 	{
@@ -53,7 +55,7 @@ int	ft_putnbr(int nb)
 
 	if (nb == 0)
 	{
-		print = ft_putchar(48);
+		result = ft_putchar(48);
 		return (result);
 	}
 	ft_putnb(nb);
