@@ -6,7 +6,7 @@
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:27:08 by wfranco           #+#    #+#             */
-/*   Updated: 2023/11/14 15:54:55 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/11/16 15:21:58 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ void	ft_bzero(void *s, size_t n)
 		str[i] = '\0';
 		i++;
 	}
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s && c != *s)
+		s++;
+	if (c == *s)
+		return ((char *)s);
+	return (0);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
