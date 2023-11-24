@@ -6,7 +6,7 @@
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:27:08 by wfranco           #+#    #+#             */
-/*   Updated: 2023/11/22 18:25:07 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/11/23 16:32:39 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ int	len_to_newline(t_list *list)
 		{
 			if (list->buf[i] == '\n')
 			{
-				++len;
+				len++;
 				return (len);
 			}
-			++i;
-			++len;
+			i++;
+			len++;
 		}
 		list = list->next;
 	}

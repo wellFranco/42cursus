@@ -6,7 +6,7 @@
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:30:37 by wfranco           #+#    #+#             */
-/*   Updated: 2023/11/22 18:42:09 by wfranco          ###   ########.fr       */
+/*   Updated: 2023/11/24 20:15:59 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	create_list(t_list **list, int fd)
 		if (NULL == buf)
 			return ;
 		char_read = read(fd, buf, BUFFER_SIZE);
-		if (!char_read)
+		if (!char_read || char_read < 0)
 		{
 			free(buf);
 			return ;
@@ -95,10 +95,10 @@ char	*get_next_line(int fd)
 	static t_list	*list;
 	char			*next_line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	create_list(&list, fd);
-	if (!list)
+	if (list == NULL)
 		return (NULL);
 	next_line = get_line(list);
 	clean_list(&list);
