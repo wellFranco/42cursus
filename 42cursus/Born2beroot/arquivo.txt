@@ -1,0 +1,65 @@
+sudo aa-status
+
+Check FIREWALL service
+#sudo ufw status
+
+Check SSH service
+#sudo service ssh status
+
+Check DEBIAN
+#uname -a
+
+Check Wfranco é faz parte dos grupos SUDO e USER42
+#getent group wfranco
+
+Check políticas de PASSWORD
+#vim /etc/login.defs
+
+Criando um novo usuário
+#sudo adduser <new_user>
+
+Criando um novo grupo e add um novo usuárioa a ele
+#sudo addgroup <nome_do_grupo>
+#sudo adduser <nome_do_usuário> <nome_do_grupo>
+
+Check o nome do hostname
+#hostname
+
+Adcionando um novo hostname e dando reboot no sistema
+#sudo adduser <novo_user> sudo
+#sudo login <novo_user>
+#sudo vim /etc/hostname/
+#sudo reboot
+
+Ver particionamento
+#lsblk
+
+Ver se o sudo foi instalado corretamente
+#dpkg -l | grep sudo
+
+Ver configurações do sudo
+#vim /etc/sudoers.d/sudo_config
+
+verificar se o /var/log/sudo/ existe
+sudo ls /var/log/sudo/
+
+ver o histórico de comandos com sudo
+#sudo cat /var/log/sudo/sudo_config
+
+verificar si o ufw foi instalado
+#dpkg -l | grep ufw
+
+verificar se está funcionando devidamente
+#sudo ufw status
+
+adcionar uma nova porta no firewall
+#sudo ufw allow <numero da porta>
+
+deletar essa porta
+#sudo ufw delete <numero da porta>
+
+verificar a chave ssh
+#dpkg -l | grep openssh-server
+
+verificar status ssh
+#sudo service ssh status
