@@ -6,7 +6,7 @@
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:24:11 by wfranco           #+#    #+#             */
-/*   Updated: 2023/12/21 15:42:02 by wfranco          ###   ########.fr       */
+/*   Updated: 2024/01/03 16:14:51 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ int	main()
 {
 	struct	sigaction sa;
 	sa.sa_handler = handler;
+	sa.sa_handler = seghandler;
 
-	sigaction(SIGINT, &sa, NULL);
-	sigaction(SIGTERM, &sa, NULL);
-
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
+	
+	printf ("esperando alguma coisa. %d\n", getpid());
 	while (1)
 	{
-		printf ("esperando alguma coisa. %d\n", getpid());
-		sleep(1);
-	}
+		pause();
+	}	
 }
