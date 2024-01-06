@@ -1,41 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 15:24:11 by wfranco           #+#    #+#             */
-/*   Updated: 2024/01/03 16:14:51 by wfranco          ###   ########.fr       */
+/*   Created: 2024/01/06 14:06:49 by wfranco           #+#    #+#             */
+/*   Updated: 2024/01/06 14:47:15 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <signal.h>
+#include "minitalk.h"
 
-void	handler(int num)
+void	check_signal(int sig)
 {
-	write(STDOUT_FILENO, "I won't die!\n", 13);
+	static int	bin;
+	static char	c;
+
+	if (sig == SIGUSR2)
+	{
+		c = c << 1;
+		c = c | 1;
+	}
+	else
+		c = c << 1;
+	bin ++;
+	if (bin == 8)
+	{
+		ft_putchar(c);
+		c = 0;
+		bin = 0;
+	}
 }
 
-void	seghandler(int num)
+int	main(void)
 {
-	write(STDOUT_FILENO, "Seg Fault!\n", 10);
-}
-
-int	main()
-{
-	struct	sigaction sa;
-	sa.sa_handler = handler;
-	sa.sa_handler = seghandler;
-
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
-	
-	printf ("esperando alguma coisa. %d\n", getpid());
+	ft_putstr("Server PID -> ");
+	ft_putnbr(getpid());
+	ft_putstr("\n\n");
 	while (1)
 	{
+		signal(SIGUSR1, check_signal);
+		signal(SIGUSR2, check_signal);
 		pause();
-	}	
+	}
+	return (0);
 }

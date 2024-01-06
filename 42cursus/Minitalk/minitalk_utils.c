@@ -6,7 +6,7 @@
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:12:32 by wfranco           #+#    #+#             */
-/*   Updated: 2024/01/04 17:12:39 by wfranco          ###   ########.fr       */
+/*   Updated: 2024/01/06 14:54:50 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	ft_putnbr(int n)
 		ft_putchar('-');
 		ft_putnbr(-n);
 	}
-	else if (n >9)
+	else if (n > 9)
 	{
-		ft_putnbr(n /10);
+		ft_putnbr(n / 10);
 		ft_putchar(n % 10 + 48);
 	}
 	else
