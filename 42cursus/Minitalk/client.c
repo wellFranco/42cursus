@@ -19,7 +19,7 @@ void	send_bits(int pid, char sign)
 	i = 7;
 	while (i >= 0)
 	{
-		if ((sign >> i) & 1)
+		if ((sign >> i) & 0b0000001)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
