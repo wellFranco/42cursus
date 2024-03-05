@@ -23,3 +23,26 @@ void	ft_sa(t_stack **a, int j)
 	if (j == 0)
 		write(1, "sa\n", 3);
 }
+
+void	ft_pa(t_stack **a, t_stack **b, int j)
+{
+	t_stack	*tmp;
+
+	if (!b)
+		return ;
+	tmp = *a;
+	*a = *b;
+	*b = (*b)->next;
+	(*a)->next = tmp;
+	if (j == 0)
+		write(1, "pa\n", 3);
+}
+
+void	ft_rra(t_stack **a, int j)
+{
+	t_stack	*tmp;
+	int		i;
+	
+	tmp = *a;
+	
+}
