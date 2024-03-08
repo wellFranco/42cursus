@@ -1,7 +1,9 @@
 #include "./minilibx-linux/mlx.h"
+#include "./libft/libft.h"
 //#include <x11/keysym.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <fcntl.h>
 
 # define ESC 0xff1b
 
@@ -48,11 +50,21 @@ int on_keypress(int keysym, t_data *data)
 	return(0);
 	
 }
+
+t_map	count_map()
+{
+	int fd;
+	char *line;
+
+	fd = open("./map.ber", O_RDONLY);
+	line = get_next_line(fd);
+	printf("%s\n", line);
+}
  
 int main(void)
 {
 	t_data data;
- 
+	count_map();
 	data.mlx_ptr = mlx_init();
 	//if (!data.mlx_ptr)
 	//	return (1);

@@ -5,8 +5,10 @@ FILE = so_long.c
 
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror  -o 
+FLAGS = -Wall -Wextra -Werror  
 MINILIBX = ./minilibx-linux/libmlx_Linux.a -lX11 -lXext -lm
+LIBFT = ./libft/
+LIBFT_A = $(LIBFT)libft.a
 RM = rm -rf
 
 
@@ -14,14 +16,16 @@ RM = rm -rf
 all: $(NAME)
 
 $(NAME):		
-			$(CC) $(FLAGS) $(NAME) $(FILE) $(MINILIBX) 
+			$(MAKE) -C $(LIBFT)
+			$(CC) $(FLAGS) $(FILE)  $(LIBFT_A) $(MINILIBX) -o $(NAME) 
 
 clean:
-		$(RM) $(NAME)
+		@$(MAKE) clean -C $(LIBFT)
 
 fclean: clean
-			
-re: clean all
+		@$(MAKE) fclean -C $(LIBFT)
+		$(RM) $(NAME)	
+re: fclean all
 
 
 .PHONY: all clean re
