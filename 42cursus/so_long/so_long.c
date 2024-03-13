@@ -1,7 +1,9 @@
 #include "./minilibx-linux/mlx.h"
+#include "./libft/get_next_line.h"
 #include "./libft/libft.h"
 //#include <x11/keysym.h>
 #include <stdio.h>
+#include <stddef.h>
 #include <stdlib.h>
 #include <fcntl.h>
 
@@ -9,7 +11,8 @@
 
 typedef struct s_map
 {
-    int w_map;
+	char **map;
+	int w_map;
     int h_map;
 }   t_map;
 
@@ -34,7 +37,7 @@ int on_keypress(int keysym, t_data *data)
 {
     int width;
     int height;
-	printf("Pressed key: %c\\n", keysym);
+	printf("%c\n", keysym);
     if(keysym == 'w')
     {
         data->img = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Dino.xpm", &width, &height);
@@ -51,14 +54,20 @@ int on_keypress(int keysym, t_data *data)
 	
 }
 
-t_map	count_map()
+void	count_columns(t_game *data, char *file)
 {
 	int fd;
 	char *line;
 
 	fd = open("./map.ber", O_RDONLY);
+	if (fd == -1)
+	{
+		perror("deu ruim");
+		exit(EXIT_FAILURE);
+	}
 	line = get_next_line(fd);
 	printf("%s\n", line);
+	close(fd);
 }
  
 int main(void)

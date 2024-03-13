@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 12:27:08 by wfranco           #+#    #+#             */
-/*   Updated: 2023/11/23 16:32:39 by wfranco          ###   ########.fr       */
+/*   Created: 2024/03/13 19:23:45 by wfranco           #+#    #+#             */
+/*   Updated: 2024/03/13 19:23:49 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	found_newline(t_list *list)
 {
 	int	i;
 
-	if (NULL == list)
+	if (!list)
 		return (0);
 	while (list)
 	{
@@ -37,16 +37,44 @@ t_list	*find_last_node(t_list *list)
 	if (!list)
 		return (NULL);
 	while (list->next)
+	{
 		list = list->next;
+	}
 	return (list);
 }
 
-void	copy_str(t_list *list, char *str)
+int	len_to_newline(t_list *list)
+{
+	int	i;
+	int	len;
+
+	if (!list)
+		return (0);
+	len = 0;
+	while (list)
+	{
+		i = 0;
+		while (list->buf[i] != '\0')
+		{
+			if (list->buf[i] == '\n')
+			{
+				len++;
+				return (len);
+			}
+			len++;
+			i++;
+		}
+		list = list->next;
+	}
+	return (len);
+}
+
+void	copy_str_list(t_list *list, char *str)
 {
 	int	i;
 	int	j;
 
-	if (NULL == list)
+	if (!list)
 		return ;
 	j = 0;
 	while (list)
@@ -67,37 +95,11 @@ void	copy_str(t_list *list, char *str)
 	str[j] = '\0';
 }
 
-int	len_to_newline(t_list *list)
-{
-	int	i;
-	int	len;
-
-	if (NULL == list)
-		return (0);
-	len = 0;
-	while (list)
-	{
-		i = 0;
-		while (list->buf[i])
-		{
-			if (list->buf[i] == '\n')
-			{
-				len++;
-				return (len);
-			}
-			i++;
-			len++;
-		}
-		list = list->next;
-	}
-	return (len);
-}
-
-void	dealloc(t_list **list, t_list *clean_node, char *buf)
+void	clear_list(t_list **list, t_list *clean_node, char *buf)
 {
 	t_list	*tmp;
 
-	if (NULL == *list)
+	if (*list == NULL)
 		return ;
 	while (*list)
 	{
@@ -107,7 +109,7 @@ void	dealloc(t_list **list, t_list *clean_node, char *buf)
 		*list = tmp;
 	}
 	*list = NULL;
-	if (clean_node->buf[0])
+	if (clean_node->buf[0] != '\0')
 		*list = clean_node;
 	else
 	{
