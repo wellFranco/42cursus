@@ -54,26 +54,34 @@ int on_keypress(int keysym, t_data *data)
 	
 }
 
-void	count_columns(t_game *data, char *file)
+//MAP                              //
+void	count_columns()
 {
 	int fd;
-	char *line;
+	//char *line;
+	int	columns;
 
+	columns = 0;
 	fd = open("./map.ber", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("deu ruim");
 		exit(EXIT_FAILURE);
 	}
-	line = get_next_line(fd);
-	printf("%s\n", line);
+	while(get_next_line(fd))
+	{
+		columns++;
+	}
+	printf("%d\n", columns);
 	close(fd);
 }
- 
+//MAP                            //
+
+
 int main(void)
 {
 	t_data data;
-	count_map();
+	count_columns();
 	data.mlx_ptr = mlx_init();
 	//if (!data.mlx_ptr)
 	//	return (1);
