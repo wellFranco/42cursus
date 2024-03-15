@@ -1,7 +1,8 @@
-#include "./minilibx-linux/mlx.h"
-#include "./libft/get_next_line.h"
-#include "./libft/libft.h"
+//#include "./minilibx-linux/mlx.h"
+//#include "./libft/get_next_line.h"
+//#include "./libft/libft.h"
 //#include <x11/keysym.h>
+#include "so_long.h"
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -12,17 +13,24 @@
 typedef struct s_map
 {
 	char **map;
-	int w_map;
-    int h_map;
+	size_t	w_map;
+    size_t	h_map;
+	int	x;
+	int	y;
+	int	fd;
 }   t_map;
 
 typedef struct s_data
 {
     void    *mlx_ptr;
     void    *win_ptr;
-    t_map   *map;
+    t_map   map;
     void    *img;
 }   t_data;
+
+//UTILs
+
+
 
 int on_destroy(t_data *data)
 {
@@ -43,7 +51,7 @@ int on_keypress(int keysym, t_data *data)
         data->img = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Dino.xpm", &width, &height);
         mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
     }
-	if(keysym == ESC)
+	if(keysym == 0xff1b)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		mlx_destroy_display(data->mlx_ptr);
@@ -55,33 +63,104 @@ int on_keypress(int keysym, t_data *data)
 }
 
 //MAP                              //
-void	count_columns()
+int	count_line()
 {
 	int fd;
 	//char *line;
-	int	columns;
+	int	line;
 
-	columns = 0;
+	line = 0;
 	fd = open("./map.ber", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("deu ruim");
-		exit(EXIT_FAILURE);
+		exit(1);
 	}
 	while(get_next_line(fd))
 	{
-		columns++;
+		line++;
 	}
-	printf("%d\n", columns);
+	//printf("%d\n", line);
 	close(fd);
+	return (line);
 }
-//MAP                            //
 
+int	count_columns()
+{
+	int fd;
+	int	columns;
+
+	columns = 0;
+	fd =open("./map.ber", O_RDONLY);
+	if (fd == -1)
+	{
+		perror("deu ruim");
+		exit(1);
+	}
+	columns = ft_strlen(get_next_line(fd)) - 1;
+	//printf("%d\n", columns);
+	close(fd);
+	return (columns);
+}
+
+//MAP                            //
 
 int main(void)
 {
 	t_data data;
-	count_columns();
+	data.map.x = count_line();
+	data.map.y = count_columns();
+
+
+	int i;
+
+	data.map.map = malloc((data.map.x + 1) * sizeof(char *));
+	i = 0;
+	while(i <= data.map.x)
+	{
+		data.map.map[i] = malloc((data.map.y + 1) * sizeof(char));
+		data.map.map[i][data.map.y] = '\0';
+		i++;
+	}
+	i = 0;
+	while (i <= data.map.y)
+	{
+		data.map.map[data.map.x][0] = '\0';
+		i++;
+	}
+
+i = 0;
+int j = 0;
+while (i < data.map.y)
+{
+	j = 0;
+	while (data.map.map[i][j])
+	{
+		data.map.map[i][j] = 'X';
+		j++;
+	}
+	i++;
+}
+
+// i = 0;
+// j = 0;
+// while (data.map.map[i][0])
+// {
+// 	j = 0;
+// 	while (data.map.map[i][j])
+// 	{
+// 		// printf("%c ", data.map.map[0][i]);
+// 		write(1, &data.map.map[j][i], 1);
+// 		j++;
+// 	}
+// 	i++;
+// }
+
+
+
+
+	//printf("%d\n%d\n", data.map.x, data.map.y);
+
 	data.mlx_ptr = mlx_init();
 	//if (!data.mlx_ptr)
 	//	return (1);
