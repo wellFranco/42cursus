@@ -125,36 +125,37 @@ int main(void)
 	i = 0;
 	while (i <= data.map.y)
 	{
-		data.map.map[data.map.x][0] = '\0';
+		data.map.map[data.map.x][i] = '\0';
 		i++;
 	}
 
+
 i = 0;
 int j = 0;
-while (i < data.map.y)
+while (j < data.map.y)
 {
-	j = 0;
-	while (data.map.map[i][j])
+	i = 0;
+	while (i < data.map.x)
 	{
 		data.map.map[i][j] = 'X';
-		j++;
+		i++;
 	}
-	i++;
+	j++;
 }
 
-// i = 0;
-// j = 0;
-// while (data.map.map[i][0])
-// {
-// 	j = 0;
-// 	while (data.map.map[i][j])
-// 	{
-// 		// printf("%c ", data.map.map[0][i]);
-// 		write(1, &data.map.map[j][i], 1);
-// 		j++;
-// 	}
-// 	i++;
-// }
+i = 0;
+j = 0;
+while (data.map.map[i][0])
+{
+	j = 0;
+	while (data.map.map[0][j])
+	{
+		write(1, &data.map.map[i][j], 1);
+		j++;
+	}
+	write(1, "\n", 1);
+	i++;
+}
 
 
 
