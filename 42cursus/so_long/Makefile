@@ -1,5 +1,6 @@
 NAME = so_long
-FILE = so_long.c
+FILE = so_long.c\
+	./put_img.c
 
 
 
