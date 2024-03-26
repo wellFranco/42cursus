@@ -5,11 +5,6 @@
 # define IMG_W 50
 # define IMG_H 50
 # define WIN_NAME "so_long"
-# define WALL '1'
-# define FLOOR '0'
-# define START 'P'
-# define EXIT 'E'
-# define COIN 'C'
 
 
 #include "./minilibx-linux/mlx.h"
@@ -22,27 +17,66 @@
 #include <fcntl.h>
 
 # define ESC 0xff1b
+# define DINO "./images/dino.xpm"
+# define COIN "./images/coin.xpm"
+# define EXIT "./images/exit.xpm"
+# define WALL "./images/wall5.xpm"
 
 typedef struct s_map
 {
-	char **map;
-	size_t	w_map;
-    size_t	h_map;
+	char	**map;
+	char	**copy;
+	void	*img_perso;
+	void	*img_wall;
+	void	*img_exit;
+	void	*img_coin;
 	int	x;
 	int	y;
 	int	fd;
+	int	player;
+	int	coin;
+	int	exit;
 }   t_map;
+
+typedef struct	s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
 
 typedef struct s_data
 {
     void    *mlx_ptr;
     void    *win_ptr;
     t_map   map;
+	t_pos	pos_p;
+	t_pos	pos_e;
 	// t_img	img;
     void    *win_img;
+	int	moves;
 }   t_data;
 
+/* PUT_IMG*/
+void	load_image(t_data *data);
+void	draw_image(t_data *data, char obj, int x, int y);
+void	draw_map(t_data *data);
+void	free_map(char **map);
+int	destroy_window(t_data *data, int img);
 
-void	draw_background(t_data *data, char *image_path, int width, int height);
+/*MAP*/
+int	count_line(char *file);
+char	**get_map(char *file);
+void    count_param(t_data *data);
+void    init_map(t_data *data, char *file);
+
+/* MAP_AUX*/
+void	get_the_line(t_data *data, char *file);
+void	get_the_columns(t_data *data, char *file);
+
+/*GAME_MOVE*/
+void	get_position(t_data *data);
+
+/*VALIDATION*/
+void	check_components(t_data *data);
 
 #endif

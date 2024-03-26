@@ -1,6 +1,11 @@
 NAME = so_long
 FILE = so_long.c\
-	./put_img.c
+		put_img.c\
+		map.c\
+		map_aux.c\
+		game_move.c\
+		./validation.c
+
 
 
 
