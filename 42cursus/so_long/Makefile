@@ -4,7 +4,10 @@ FILE = so_long.c\
 		map.c\
 		map_aux.c\
 		game_move.c\
-		./validation.c
+		validation.c\
+		validation2.c\
+		error.c\
+		./validation3.c
 
 
 
