@@ -34,6 +34,7 @@ FILE =	minishell.c\
 	$(ARGUMENTS)less_than.c\
 	$(ARGUMENTS)smaller_smaller_than.c\
 	$(ARGUMENTS)redirection_operators.c\
+	$(ARGUMENTS)signal.c\
 	$(COMMANDS)add_variable.c\
 	$(COMMANDS)echo.c\
 	$(COMMANDS)cd.c\

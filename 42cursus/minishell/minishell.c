@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joseanto <joseanto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 18:23:25 by joseanto          #+#    #+#             */
-/*   Updated: 2024/05/02 08:44:10 by joseanto         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:05:26 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,19 @@ int	main(int argc, char **argv, char **argenv)
 	{
 		str = readline("minishell: "); // printf("teste :%d\n", (*str == '\0')); // CASO PRESSIONE ENTER SEM DIGITAR NADA NO SHELL *str == 0
 // printf("testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\n"); // PQ DPS DE RODAR wc -l < a DA FALHA DE SEGMENTACAO????
-
+		add_history(str);
 		quotes(str);
 		remove_quotes(str);
 		separate_redirection_operators(&str);
 		args = ft_split(str, ' ');
 		swap_tab(args);
+		check_operator(args);
+		int	i = 0;
+while (args[i])
+{
+	printf("%s\n", args[i]);
+	i++;
+}
 		argument_management(&args, &env_list);
 
 //	AKI DEVE ENTRAR OS OPERADORES DE REDIRECIONAMENTO
