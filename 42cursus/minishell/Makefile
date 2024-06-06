@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: joseanto <joseanto@student.42.fr>          +#+  +:+       +#+         #
+#    By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 09:55:22 by joseanto          #+#    #+#              #
-#    Updated: 2024/05/02 08:37:25 by joseanto         ###   ########.fr        #
+#    Updated: 2024/06/06 17:34:34 by wfranco          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ FILE =	minishell.c\
 	$(ASSISTANT)ft_itoa.c\
 	$(ASSISTANT)ft_atoi.c\
 	$(ASSISTANT)error_message.c\
+	$(ASSISTANT)syntax_redirect.c\
 	$(ARGUMENTS)environment_variable.c\
 	$(ARGUMENTS)argument_management.c\
 	$(ARGUMENTS)quotes.c\

@@ -6,7 +6,7 @@
 /*   By: wfranco <wfranco@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 18:10:16 by joseanto          #+#    #+#             */
-/*   Updated: 2024/06/04 15:19:11 by wfranco          ###   ########.fr       */
+/*   Updated: 2024/06/06 19:33:46 by wfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,18 @@ char	**ft_split(char const *s, char c);
 char	*skip_char(char *str);
 char	*skip_space(char *str);
 char	*skip_c(char *str, char c);
-void	check_operator(char **arg);
 
 // ./assistant/copy.c
 char	*copy_str(char *str);
 // char	**copy_str_str(char	**ptr);
+
+// ./assistant/syntax_redirect.c
+int	check_syntax_error(char operator, char next_char);
+int	check_pipe(char **arg, int i);
+int	check_greater(char **arg, int i);
+int	check_less(char **arg, int i);
+int	check_operator(char **arg);
+
 
 // ./assistant/search.c
 int	compare(char *s1, char *s2);
@@ -125,6 +132,7 @@ void	redirection_operators(char *str, char **argv, char ***argenv, t_str **env_l
 int	count_pipe(char **argv);
 // char	**args_pipe(char **argv, int process);
 void	command_pipe(char *str, char **argv, char ***argenv, t_str **env_list);
+// pid_t	init_pipe();
 
 // ./argument management/bigger_then.c
 void	init_bigger_then(char **args);
@@ -139,7 +147,7 @@ void	init_less_than(char **args);
 void	finish_less_than(int new_stdin);
 
 // ./argument management/smaller_smaller_than.c
-void	init_smaller_smaller_than(char **args);
+void	init_smaller_smaller_than(char **args, t_str **env_list);
 void	finish_smaller_smaller_than(int new_stdin);
 
 
@@ -191,11 +199,6 @@ void    exec_program(char **argv, char **env, char *str, t_str **env_list);
 // ./commands/commands.c
 void	commands(char *str, char **args, char ***argenv, t_str **env_list);
 
-// ./argument_/signal.c
-void	handle_sigint(int sign);
-void	check_signal(void);
-// void	handle_sigquit(int sign);
-void	mito(void);
 
 
 // ./minishell.c
